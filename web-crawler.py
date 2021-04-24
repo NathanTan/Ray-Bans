@@ -19,18 +19,23 @@ class Crawler:
     def get_linked_urls(self, url, html):
         soup = BeautifulSoup(html, 'html.parser')
         for link in soup.find_all('a'):
+            #TODO: check if the link tag has the rb-plp-product-tile value in the attribute class
+            #if link.
             path = link.get('href')
             if path and path.startswith('/'):
                 path = urljoin(url, path)
             yield path
 
     def add_url_to_visit(self, url):
+        if 
         if url not in self.visited_urls and url not in self.urls_to_visit:
             self.urls_to_visit.append(url)
 
+    # Do the actual crawling of the webpage
     def crawl(self, url):
         html = self.download_url(url)
         for url in self.get_linked_urls(url, html):
+            
             self.add_url_to_visit(url)
 
     def run(self):
@@ -45,4 +50,4 @@ class Crawler:
                 self.visited_urls.append(url)
 
 if __name__ == '__main__':
-    Crawler(urls=['https://www.imdb.com/']).run()
+    Crawler(urls=['https://www.ray-ban.com/usa/sunglasses/view-all']).run()
